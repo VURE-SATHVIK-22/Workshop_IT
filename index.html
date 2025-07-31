@@ -11,87 +11,289 @@
   <style>
     body { font-family: 'Inter', sans-serif; }
     .font-display { font-family: 'Playfair Display', serif; }
+    
+    /* Advanced Animations and Transitions */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    @keyframes scaleIn {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    /* Navigation Underline Animation */
+    .nav-link {
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -4px;
+      left: 50%;
+      background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+      border-radius: 1px;
+    }
+    
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    .nav-link:hover {
+      transform: translateY(-2px);
+      color: #2563eb;
+    }
+    
+    /* Animation Classes */
+    .animate-fadeInUp {
+      animation: fadeInUp 0.8s ease-out;
+    }
+    
+    .animate-slideInLeft {
+      animation: slideInLeft 0.8s ease-out;
+    }
+    
+    .animate-slideInRight {
+      animation: slideInRight 0.8s ease-out;
+    }
+    
+    .animate-scaleIn {
+      animation: scaleIn 0.6s ease-out;
+    }
+    
+    .animate-float {
+      animation: float 3s ease-in-out infinite;
+    }
+    
+    .animate-pulse-slow {
+      animation: pulse 2s ease-in-out infinite;
+    }
+    
+    /* Gradient Animation */
+    .gradient-animate {
+      background: linear-gradient(-45deg, #dbeafe, #ffffff, #bfdbfe, #dbeafe);
+      background-size: 400% 400%;
+      animation: gradientShift 8s ease infinite;
+    }
+    
+    /* Smooth Scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    /* Enhanced Button Animations */
+    .btn-primary {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+    }
+    
+    .btn-primary:hover::before {
+      left: 100%;
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+    }
+    
+    /* Card Hover Effects */
+    .card-hover {
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    
+    .card-hover:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Mobile Menu Animation */
+    .mobile-menu-enter {
+      animation: slideDown 0.3s ease-out;
+    }
+    
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Loading Animation */
+    .loading-dots {
+      display: inline-block;
+    }
+    
+    .loading-dots::after {
+      content: '';
+      animation: dots 1.5s steps(5, end) infinite;
+    }
+    
+    @keyframes dots {
+      0%, 20% { content: ''; }
+      40% { content: '.'; }
+      60% { content: '..'; }
+      80%, 100% { content: '...'; }
+    }
   </style>
 </head>
-<body class="bg-gradient-to-br from-blue-100 via-white to-blue-200 text-gray-900">
+<body class="gradient-animate text-gray-900">
   <!-- Navigation Bar -->
-  <nav class="fixed w-full bg-gradient-to-r from-white via-blue-50 to-white shadow-lg z-50">
+  <nav class="fixed w-full bg-gradient-to-r from-white/95 via-blue-50/95 to-white/95 backdrop-blur-md shadow-lg z-50 transition-all duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
-      <div class="flex items-center">
-        <span class="font-display text-2xl font-bold text-blue-700">Workshop</span>
+      <div class="flex items-center animate-slideInLeft">
+        <span class="font-display text-2xl font-bold text-blue-700 hover:text-blue-800 transition-colors duration-300">Workshop</span>
       </div>
       <div class="hidden md:flex space-x-8">
-        <a href="index.html#home" class="hover:text-blue-600 font-semibold transition">Home</a>
-        <a href="Learning-outcomes.html" class="hover:text-blue-600 font-semibold transition">Learning Outcomes</a>
-        <a href="speakers.html" class="hover:text-blue-600 font-semibold transition">Speakers</a>
-        <a href="sources.html" class="hover:text-blue-600 font-semibold transition">Sources</a>
-        <a href="outcomes.html" class="hover:text-blue-600 font-semibold transition">Outcomes</a>
-        <a href="#contact" class="hover:text-blue-600 font-semibold transition">Contact</a>
+        <a href="index.html#home" class="nav-link hover:text-blue-600 font-semibold transition-all duration-300">Home</a>
+        <a href="Learning-outcomes.html" class="nav-link hover:text-blue-600 font-semibold transition-all duration-300">Learning Outcomes</a>
+        <a href="speakers.html" class="nav-link hover:text-blue-600 font-semibold transition-all duration-300">Speakers</a>
+        <a href="sources.html" class="nav-link hover:text-blue-600 font-semibold transition-all duration-300">Sources</a>
+        <a href="outcomes.html" class="nav-link hover:text-blue-600 font-semibold transition-all duration-300">Outcomes</a>
+        <a href="#contact" class="nav-link hover:text-blue-600 font-semibold transition-all duration-300">Contact</a>
       </div>
-      <div class="md:hidden">
-        <button id="menu-btn" class="text-2xl focus:outline-none">&#9776;</button>
+      <div class="md:hidden animate-slideInRight">
+        <button id="menu-btn" class="text-2xl focus:outline-none hover:text-blue-600 transition-colors duration-300">&#9776;</button>
       </div>
     </div>
-    <div id="mobile-menu" class="md:hidden hidden px-4 pb-4">
-      <a href="index.html#home" class="block py-2 hover:text-blue-600 font-semibold">Home</a>
-      <a href="Learning-outcomes.html" class="block py-2 hover:text-blue-600 font-semibold">Learning Outcomes</a>
-      <a href="speakers.html" class="block py-2 hover:text-blue-600 font-semibold">Speakers</a>
-      <a href="sources.html" class="block py-2 hover:text-blue-600 font-semibold">Sources</a>
-      <a href="outcomes.html" class="block py-2 hover:text-blue-600 font-semibold">Outcomes</a>
-      <a href="#contact" class="block py-2 hover:text-blue-600 font-semibold">Contact</a>
+    <div id="mobile-menu" class="md:hidden hidden px-4 pb-4 mobile-menu-enter">
+      <a href="index.html#home" class="block py-2 hover:text-blue-600 font-semibold transition-all duration-300 hover:translate-x-2">Home</a>
+      <a href="Learning-outcomes.html" class="block py-2 hover:text-blue-600 font-semibold transition-all duration-300 hover:translate-x-2">Learning Outcomes</a>
+      <a href="speakers.html" class="block py-2 hover:text-blue-600 font-semibold transition-all duration-300 hover:translate-x-2">Speakers</a>
+      <a href="sources.html" class="block py-2 hover:text-blue-600 font-semibold transition-all duration-300 hover:translate-x-2">Sources</a>
+      <a href="outcomes.html" class="block py-2 hover:text-blue-600 font-semibold transition-all duration-300 hover:translate-x-2">Outcomes</a>
+      <a href="#contact" class="block py-2 hover:text-blue-600 font-semibold transition-all duration-300 hover:translate-x-2">Contact</a>
     </div>
   </nav>
 
   <!-- Main Content -->
   <main class="pt-24">
     <!-- Home Section -->
-    <section id="home" class="min-h-screen flex flex-col justify-center items-center bg-gradient-to-br from-blue-200 via-white to-blue-100">
-      <h1 class="font-display text-5xl md:text-7xl font-bold mb-6 text-blue-800 text-center">Zero to Live Website Creation</h1>
-      <p class="text-lg md:text-2xl text-gray-700 max-w-2xl text-center mb-8">Learn to build, style, and deploy a professional website from scratch using Tailwind CSS, JavaScript, and modern web tools. No prior experience required!</p>
-      <p class="text-lg text-blue-700 font-bold mb-8 bg-blue-50 px-6 py-2 rounded-full shadow inline-block">Organized by <span class="text-blue-900">Department of Information Technology</span></p>
-      <a href="Learning-outcomes.html" class="px-8 py-3 bg-gradient-to-r from-blue-700 via-blue-500 to-blue-800 text-white rounded-full font-semibold shadow-lg hover:from-blue-800 hover:to-blue-900 transition">Learn More</a>
+    <section id="home" class="min-h-screen flex flex-col justify-center items-center bg-gradient-to-br from-blue-200 via-white to-blue-100 relative overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-r from-blue-400/10 to-purple-400/10 animate-pulse-slow"></div>
+      <div class="relative z-10 text-center">
+        <h1 class="font-display text-5xl md:text-7xl font-bold mb-6 text-blue-800 text-center animate-fadeInUp leading-tight">
+          Zero to Live 
+          <span class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent animate-pulse-slow">Website Creation</span>
+        </h1>
+        <p class="text-lg md:text-2xl text-gray-700 max-w-2xl text-center mb-8 animate-fadeInUp" style="animation-delay: 0.2s;">Learn to build, style, and deploy a professional website from scratch using Tailwind CSS, JavaScript, and modern web tools. No prior experience required!</p>
+        <p class="text-lg text-blue-700 font-bold mb-8 bg-blue-50 px-6 py-2 rounded-full shadow inline-block animate-fadeInUp hover:bg-blue-100 transition-all duration-300" style="animation-delay: 0.4s;">Organized by <span class="text-blue-900">Department of Information Technology</span></p>
+        <a href="Learning-outcomes.html" class="btn-primary px-8 py-3 bg-gradient-to-r from-blue-700 via-blue-500 to-blue-800 text-white rounded-full font-semibold shadow-lg hover:from-blue-800 hover:to-blue-900 transition-all duration-300 animate-fadeInUp" style="animation-delay: 0.6s;">Learn More</a>
+      </div>
     </section>
 
     <!-- Learning Outcomes Section -->
     <section id="learning-outcomes" class="py-24 bg-gradient-to-br from-white via-blue-50 to-blue-100">
       <div class="max-w-5xl mx-auto px-4 text-center">
-        <h2 class="font-display text-4xl font-bold text-blue-700 mb-8">Learning Outcomes</h2>
-        <div class="bg-white bg-opacity-80 rounded-2xl shadow-xl p-8 mb-8">
+        <h2 class="font-display text-4xl font-bold text-blue-700 mb-8 animate-fadeInUp">Learning Outcomes</h2>
+        <div class="bg-white bg-opacity-80 rounded-2xl shadow-xl p-8 mb-8 card-hover animate-fadeInUp" style="animation-delay: 0.2s;">
           <p class="text-lg md:text-xl text-gray-700 leading-relaxed">Discover the essential skills and knowledge you'll gain in our comprehensive "Zero to Live Website Creation" workshop. Our expert-led sessions cover everything from <span class="font-semibold text-blue-600">Tailwind CSS</span> fundamentals to advanced <span class="font-semibold text-blue-600">JavaScript</span> techniques, <span class="font-semibold text-blue-600">cURL</span> commands, and professional <span class="font-semibold text-blue-600">website deployment</span> strategies.</p>
         </div>
-        <a href="Learning-outcomes.html" class="inline-block px-8 py-3 bg-gradient-to-r from-blue-700 via-blue-500 to-blue-800 text-white rounded-full font-semibold shadow-lg hover:from-blue-800 hover:to-blue-900 transition">Explore Full Learning Outcomes</a>
+        <a href="Learning-outcomes.html" class="btn-primary inline-block px-8 py-3 bg-gradient-to-r from-blue-700 via-blue-500 to-blue-800 text-white rounded-full font-semibold shadow-lg hover:from-blue-800 hover:to-blue-900 transition-all duration-300 animate-fadeInUp" style="animation-delay: 0.4s;">Explore Full Learning Outcomes</a>
       </div>
     </section>
 
     <!-- Speakers Section -->
     <section id="speakers" class="py-24 bg-gray-50">
       <div class="max-w-5xl mx-auto px-4 text-center">
-        <h2 class="font-display text-4xl font-bold text-blue-700 mb-8">Speakers</h2>
-        <div class="bg-white bg-opacity-80 rounded-2xl shadow-xl p-8 mb-8">
+        <h2 class="font-display text-4xl font-bold text-blue-700 mb-8 animate-fadeInUp">Speakers</h2>
+        <div class="bg-white bg-opacity-80 rounded-2xl shadow-xl p-8 mb-8 card-hover animate-fadeInUp" style="animation-delay: 0.2s;">
           <p class="text-lg md:text-xl text-gray-700 leading-relaxed">Meet our workshop presenters who will guide you through the complete web development journey. <span class="font-semibold text-blue-600">Venkatapathi</span> will cover JavaScript fundamentals and interactivity, <span class="font-semibold text-blue-600">Vure Sathvik</span> will teach Tailwind CSS for beautiful designs, while <span class="font-semibold text-blue-600">Nikhil</span> and <span class="font-semibold text-blue-600">B. Mohith</span> will walk you through the deployment process to get your website live.</p>
         </div>
-        <a href="speakers.html" class="inline-block px-8 py-3 bg-gradient-to-r from-blue-700 via-blue-500 to-blue-800 text-white rounded-full font-semibold shadow-lg hover:from-blue-800 hover:to-blue-900 transition">Meet Our Speakers</a>
+        <a href="speakers.html" class="btn-primary inline-block px-8 py-3 bg-gradient-to-r from-blue-700 via-blue-500 to-blue-800 text-white rounded-full font-semibold shadow-lg hover:from-blue-800 hover:to-blue-900 transition-all duration-300 animate-fadeInUp" style="animation-delay: 0.4s;">Meet Our Speakers</a>
       </div>
     </section>
 
     <!-- Contact Section -->
     <section id="contact" class="py-24 bg-white">
       <div class="max-w-3xl mx-auto px-4">
-        <h2 class="font-display text-4xl font-bold text-blue-700 mb-8 text-center">Contact</h2>
-        <form class="bg-gray-50 rounded-xl shadow-lg p-8 space-y-6">
-          <div>
-            <label class="block text-gray-700 font-semibold mb-2" for="name">Name</label>
-            <input class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200" type="text" id="name" name="name" required>
+        <h2 class="font-display text-4xl font-bold text-blue-700 mb-8 text-center animate-fadeInUp">Contact</h2>
+        <form class="bg-gray-50 rounded-xl shadow-lg p-8 space-y-6 card-hover animate-fadeInUp" style="animation-delay: 0.2s;">
+          <div class="group">
+            <label class="block text-gray-700 font-semibold mb-2 group-hover:text-blue-600 transition-colors duration-300" for="name">Name</label>
+            <input class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-blue-500 transition-all duration-300 hover:border-blue-400" type="text" id="name" name="name" required>
           </div>
-          <div>
-            <label class="block text-gray-700 font-semibold mb-2" for="email">Email</label>
-            <input class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200" type="email" id="email" name="email" required>
+          <div class="group">
+            <label class="block text-gray-700 font-semibold mb-2 group-hover:text-blue-600 transition-colors duration-300" for="email">Email</label>
+            <input class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-blue-500 transition-all duration-300 hover:border-blue-400" type="email" id="email" name="email" required>
           </div>
-          <div>
-            <label class="block text-gray-700 font-semibold mb-2" for="message">Message</label>
-            <textarea class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200" id="message" name="message" rows="4" required></textarea>
+          <div class="group">
+            <label class="block text-gray-700 font-semibold mb-2 group-hover:text-blue-600 transition-colors duration-300" for="message">Message</label>
+            <textarea class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-blue-500 transition-all duration-300 hover:border-blue-400" id="message" name="message" rows="4" required></textarea>
           </div>
-          <button type="submit" class="w-full py-3 bg-blue-700 text-white rounded-lg font-semibold shadow hover:bg-blue-800 transition">Send Message</button>
+          <button type="submit" class="btn-primary w-full py-3 bg-blue-700 text-white rounded-lg font-semibold shadow hover:bg-blue-800 transition-all duration-300">Send Message</button>
         </form>
       </div>
     </section>
@@ -102,7 +304,7 @@
     <p>&copy; 2025 Workshop Portfolio. All rights reserved.</p>
     <div class="flex flex-col md:flex-row justify-center items-center gap-2 mt-2 text-sm text-gray-300">
       <span class="inline-block border-t border-gray-700 w-12 md:w-24 mx-2"></span>
-      <span>Organizers: Vure Sathvik <a href="tel:+918688059009" class="text-blue-300 hover:underline ml-1">(+91-8688059009)</a> | Venkatapathi <a href="tel:+917386872189" class="text-blue-300 hover:underline ml-1">(+91-7386872189)</a> | Nikhil <a href="tel:+919390641574" class="text-blue-300 hover:underline ml-1">(+91-9390641574)</a> | B. Mohith <a href="tel:+918519851899" class="text-blue-300 hover:underline ml-1">(+91-8519851899)</a></span>
+      <span>Organizers: Vure Sathvik <a href="tel:+918688059009" class="text-blue-300 hover:underline ml-1 transition-all duration-300 hover:text-blue-200">(+91-8688059009)</a> | Venkatapathi <a href="tel:+917386872189" class="text-blue-300 hover:underline ml-1 transition-all duration-300 hover:text-blue-200">(+91-7386872189)</a> | Nikhil <a href="tel:+919390641574" class="text-blue-300 hover:underline ml-1 transition-all duration-300 hover:text-blue-200">(+91-9390641574)</a> | B. Mohith <a href="tel:+918519851899" class="text-blue-300 hover:underline ml-1 transition-all duration-300 hover:text-blue-200">(+91-8519851899)</a></span>
       <span class="inline-block border-t border-gray-700 w-12 md:w-24 mx-2"></span>
     </div>
   </footer>
@@ -115,6 +317,9 @@
     if (menuBtn && mobileMenu) {
       menuBtn.addEventListener('click', () => {
         mobileMenu.classList.toggle('hidden');
+        if (!mobileMenu.classList.contains('hidden')) {
+          mobileMenu.classList.add('mobile-menu-enter');
+        }
       });
     }
     
@@ -125,6 +330,52 @@
         mobileMenu.classList.add('hidden');
       });
     });
+    
+    // Intersection Observer for scroll animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+    
+    // Observe all sections for scroll animations
+    document.querySelectorAll('section').forEach(section => {
+      section.style.opacity = '0';
+      section.style.transform = 'translateY(30px)';
+      section.style.transition = 'all 0.8s ease-out';
+      observer.observe(section);
+    });
+    
+    // Form submission animation
+    const form = document.querySelector('form');
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const submitBtn = form.querySelector('button[type="submit"]');
+        submitBtn.innerHTML = 'Sending<span class="loading-dots"></span>';
+        submitBtn.disabled = true;
+        
+        // Simulate form submission
+        setTimeout(() => {
+          submitBtn.innerHTML = 'Message Sent!';
+          submitBtn.classList.add('bg-green-600');
+          setTimeout(() => {
+            submitBtn.innerHTML = 'Send Message';
+            submitBtn.classList.remove('bg-green-600');
+            submitBtn.disabled = false;
+            form.reset();
+          }, 2000);
+        }, 1500);
+      });
+    }
   </script>
 </body>
 </html> 

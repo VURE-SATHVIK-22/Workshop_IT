@@ -11,79 +11,293 @@
   <style>
     body { font-family: 'Inter', sans-serif; }
     .font-display { font-family: 'Playfair Display', serif; }
+    
+    /* Advanced Animations and Transitions */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    @keyframes scaleIn {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    /* Navigation Underline Animation */
+    .nav-link {
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -4px;
+      left: 50%;
+      background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+      border-radius: 1px;
+    }
+    
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    .nav-link:hover {
+      transform: translateY(-2px);
+      color: #2563eb;
+    }
+    
+    /* Animation Classes */
+    .animate-fadeInUp {
+      animation: fadeInUp 0.8s ease-out;
+    }
+    
+    .animate-slideInLeft {
+      animation: slideInLeft 0.8s ease-out;
+    }
+    
+    .animate-slideInRight {
+      animation: slideInRight 0.8s ease-out;
+    }
+    
+    .animate-scaleIn {
+      animation: scaleIn 0.6s ease-out;
+    }
+    
+    .animate-float {
+      animation: float 3s ease-in-out infinite;
+    }
+    
+    .animate-pulse-slow {
+      animation: pulse 2s ease-in-out infinite;
+    }
+    
+    /* Gradient Animation */
+    .gradient-animate {
+      background: linear-gradient(-45deg, #dbeafe, #ffffff, #bfdbfe, #dbeafe);
+      background-size: 400% 400%;
+      animation: gradientShift 8s ease infinite;
+    }
+    
+    /* Smooth Scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    /* Enhanced Button Animations */
+    .btn-primary {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+    }
+    
+    .btn-primary:hover::before {
+      left: 100%;
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+    }
+    
+    /* Card Hover Effects */
+    .card-hover {
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    
+    .card-hover:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Mobile Menu Animation */
+    .mobile-menu-enter {
+      animation: slideDown 0.3s ease-out;
+    }
+    
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Outcome Card Animations */
+    .outcome-card {
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .outcome-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+      transition: left 0.6s;
+    }
+    
+    .outcome-card:hover::before {
+      left: 100%;
+    }
+    
+    .outcome-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+    
+    .outcome-card:hover .outcome-icon {
+      transform: scale(1.1) rotate(5deg);
+    }
+    
+    .outcome-icon {
+      transition: all 0.4s ease;
+    }
   </style>
 </head>
-<body class="bg-gradient-to-br from-blue-100 via-white to-blue-200 text-gray-900">
+<body class="gradient-animate text-gray-900">
   <!-- Navigation Bar -->
-  <nav class="fixed w-full bg-gradient-to-r from-white via-blue-50 to-white shadow-lg z-50">
+  <nav class="fixed w-full bg-gradient-to-r from-white/95 via-blue-50/95 to-white/95 backdrop-blur-md shadow-lg z-50 transition-all duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
-      <div class="flex items-center">
-        <a href="index.html" class="font-display text-2xl font-bold text-blue-700">Workshop</a>
+      <div class="flex items-center animate-slideInLeft">
+        <a href="index.html" class="font-display text-2xl font-bold text-blue-700 hover:text-blue-800 transition-colors duration-300">Workshop</a>
       </div>
       <div class="hidden md:flex space-x-8">
-        <a href="index.html#home" class="hover:text-blue-600 font-semibold transition">Home</a>
-        <a href="Learning-outcomes.html" class="hover:text-blue-600 font-semibold transition text-blue-700">Learning Outcomes</a>
-        <a href="speakers.html" class="hover:text-blue-600 font-semibold transition">Speakers</a>
-        <a href="sources.html" class="hover:text-blue-600 font-semibold transition">Sources</a>
-        <a href="outcomes.html" class="hover:text-blue-600 font-semibold transition">Outcomes</a>
-        <a href="index.html#contact" class="hover:text-blue-600 font-semibold transition">Contact</a>
+        <a href="index.html#home" class="nav-link hover:text-blue-600 font-semibold transition-all duration-300">Home</a>
+        <a href="Learning-outcomes.html" class="nav-link hover:text-blue-600 font-semibold transition-all duration-300 text-blue-700">Learning Outcomes</a>
+        <a href="speakers.html" class="nav-link hover:text-blue-600 font-semibold transition-all duration-300">Speakers</a>
+        <a href="sources.html" class="nav-link hover:text-blue-600 font-semibold transition-all duration-300">Sources</a>
+        <a href="outcomes.html" class="nav-link hover:text-blue-600 font-semibold transition-all duration-300">Outcomes</a>
+        <a href="index.html#contact" class="nav-link hover:text-blue-600 font-semibold transition-all duration-300">Contact</a>
       </div>
-      <div class="md:hidden">
-        <button id="menu-btn" class="text-2xl focus:outline-none">&#9776;</button>
+      <div class="md:hidden animate-slideInRight">
+        <button id="menu-btn" class="text-2xl focus:outline-none hover:text-blue-600 transition-colors duration-300">&#9776;</button>
       </div>
     </div>
-    <div id="mobile-menu" class="md:hidden hidden px-4 pb-4">
-      <a href="index.html#home" class="block py-2 hover:text-blue-600 font-semibold">Home</a>
-      <a href="Learning-outcomes.html" class="block py-2 hover:text-blue-600 font-semibold text-blue-700">Learning Outcomes</a>
-      <a href="index.html#speakers" class="block py-2 hover:text-blue-600 font-semibold">Speakers</a>
-      <a href="index.html#sources" class="block py-2 hover:text-blue-600 font-semibold">Sources</a>
-      <a href="index.html#outcomes" class="block py-2 hover:text-blue-600 font-semibold">Outcomes</a>
-      <a href="index.html#contact" class="block py-2 hover:text-blue-600 font-semibold">Contact</a>
+    <div id="mobile-menu" class="md:hidden hidden px-4 pb-4 mobile-menu-enter">
+      <a href="index.html#home" class="block py-2 hover:text-blue-600 font-semibold transition-all duration-300 hover:translate-x-2">Home</a>
+      <a href="Learning-outcomes.html" class="block py-2 hover:text-blue-600 font-semibold transition-all duration-300 hover:translate-x-2 text-blue-700">Learning Outcomes</a>
+      <a href="index.html#speakers" class="block py-2 hover:text-blue-600 font-semibold transition-all duration-300 hover:translate-x-2">Speakers</a>
+      <a href="index.html#sources" class="block py-2 hover:text-blue-600 font-semibold transition-all duration-300 hover:translate-x-2">Sources</a>
+      <a href="index.html#outcomes" class="block py-2 hover:text-blue-600 font-semibold transition-all duration-300 hover:translate-x-2">Outcomes</a>
+      <a href="index.html#contact" class="block py-2 hover:text-blue-600 font-semibold transition-all duration-300 hover:translate-x-2">Contact</a>
     </div>
   </nav>
 
   <main class="pt-24 min-h-screen">
     <section class="py-24 bg-gradient-to-br from-white via-blue-50 to-blue-100">
       <div class="max-w-3xl mx-auto px-4">
-        <h2 class="font-display text-4xl font-bold text-blue-700 mb-12 text-center">What You'll Achieve</h2>
+        <h2 class="font-display text-4xl font-bold text-blue-700 mb-12 text-center animate-fadeInUp">What You'll Achieve</h2>
         <div class="space-y-8">
-          <div class="flex items-center bg-white bg-opacity-90 rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-shadow duration-300">
-            <div class="flex-shrink-0 mr-6 text-blue-600 text-4xl"><svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor' class='w-14 h-14'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 8c-1.657 0-3 1.343-3 3s1.343 3 3 3 3-1.343 3-3-1.343-3-3-3zm0 10c-4.418 0-8-1.79-8-4V6a2 2 0 012-2h12a2 2 0 012 2v8c0 2.21-3.582 4-8 4z'/></svg></div>
+          <div class="flex items-center bg-white bg-opacity-90 rounded-2xl shadow-xl p-8 outcome-card animate-fadeInUp" style="animation-delay: 0.1s;">
+            <div class="flex-shrink-0 mr-6 text-blue-600 text-4xl outcome-icon"><svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor' class='w-14 h-14'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 8c-1.657 0-3 1.343-3 3s1.343 3 3 3 3-1.343 3-3-1.343-3-3-3zm0 10c-4.418 0-8-1.79-8-4V6a2 2 0 012-2h12a2 2 0 012 2v8c0 2.21-3.582 4-8 4z'/></svg></div>
             <div>
               <h3 class="font-semibold text-2xl text-blue-700 mb-2">Master Tailwind CSS</h3>
               <p class="text-lg text-gray-700">Learn both the basics and advanced features of Tailwind CSS to build beautiful, responsive websites efficiently.</p>
             </div>
           </div>
-          <div class="flex items-center bg-white bg-opacity-90 rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-shadow duration-300">
-            <div class="flex-shrink-0 mr-6 text-blue-600 text-4xl"><svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor' class='w-14 h-14'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M16 7a4 4 0 01.88 7.903A4.5 4.5 0 1112 6.5V7'/></svg></div>
+          <div class="flex items-center bg-white bg-opacity-90 rounded-2xl shadow-xl p-8 outcome-card animate-fadeInUp" style="animation-delay: 0.2s;">
+            <div class="flex-shrink-0 mr-6 text-blue-600 text-4xl outcome-icon"><svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor' class='w-14 h-14'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M16 7a4 4 0 01.88 7.903A4.5 4.5 0 1112 6.5V7'/></svg></div>
             <div>
               <h3 class="font-semibold text-2xl text-blue-700 mb-2">JavaScript Essentials</h3>
               <p class="text-lg text-gray-700">Gain hands-on experience with JavaScript for interactivity, DOM manipulation, and dynamic web features.</p>
             </div>
           </div>
-          <div class="flex items-center bg-white bg-opacity-90 rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-shadow duration-300">
-            <div class="flex-shrink-0 mr-6 text-blue-600 text-4xl"><svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor' class='w-14 h-14'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 13l4 4L19 7'/></svg></div>
+          <div class="flex items-center bg-white bg-opacity-90 rounded-2xl shadow-xl p-8 outcome-card animate-fadeInUp" style="animation-delay: 0.3s;">
+            <div class="flex-shrink-0 mr-6 text-blue-600 text-4xl outcome-icon"><svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor' class='w-14 h-14'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 13l4 4L19 7'/></svg></div>
             <div>
               <h3 class="font-semibold text-2xl text-blue-700 mb-2">cURL Commands</h3>
               <p class="text-lg text-gray-700">Understand and use cURL commands for web requests and API testing, a vital skill for modern web development.</p>
             </div>
           </div>
-          <div class="flex items-center bg-white bg-opacity-90 rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-shadow duration-300">
-            <div class="flex-shrink-0 mr-6 text-blue-600 text-4xl"><svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor' class='w-14 h-14'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 4v16m8-8H4'/></svg></div>
+          <div class="flex items-center bg-white bg-opacity-90 rounded-2xl shadow-xl p-8 outcome-card animate-fadeInUp" style="animation-delay: 0.4s;">
+            <div class="flex-shrink-0 mr-6 text-blue-600 text-4xl outcome-icon"><svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor' class='w-14 h-14'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 4v16m8-8H4'/></svg></div>
             <div>
               <h3 class="font-semibold text-2xl text-blue-700 mb-2">Build a Complete Website</h3>
               <p class="text-lg text-gray-700">Create a full-featured, professional website from scratch using Tailwind CSS and JavaScript.</p>
             </div>
           </div>
-          <div class="flex items-center bg-white bg-opacity-90 rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-shadow duration-300">
-            <div class="flex-shrink-0 mr-6 text-blue-600 text-4xl"><svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor' class='w-14 h-14'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9 17v-2a4 4 0 018 0v2m-4 4a4 4 0 01-4-4H5a2 2 0 01-2-2V7a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3a4 4 0 01-4 4z'/></svg></div>
+          <div class="flex items-center bg-white bg-opacity-90 rounded-2xl shadow-xl p-8 outcome-card animate-fadeInUp" style="animation-delay: 0.5s;">
+            <div class="flex-shrink-0 mr-6 text-blue-600 text-4xl outcome-icon"><svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor' class='w-14 h-14'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9 17v-2a4 4 0 018 0v2m-4 4a4 4 0 01-4-4H5a2 2 0 01-2-2V7a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3a4 4 0 01-4 4z'/></svg></div>
             <div>
               <h3 class="font-semibold text-2xl text-blue-700 mb-2">Deploy Your Website Live</h3>
               <p class="text-lg text-gray-700">Learn the process of deploying your website to the internet, making it accessible to everyone.</p>
             </div>
           </div>
-          <div class="flex items-center bg-white bg-opacity-90 rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-shadow duration-300">
-            <div class="flex-shrink-0 mr-6 text-blue-600 text-4xl"><svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor' class='w-14 h-14'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 13l4 4L19 7'/></svg></div>
+          <div class="flex items-center bg-white bg-opacity-90 rounded-2xl shadow-xl p-8 outcome-card animate-fadeInUp" style="animation-delay: 0.6s;">
+            <div class="flex-shrink-0 mr-6 text-blue-600 text-4xl outcome-icon"><svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor' class='w-14 h-14'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 13l4 4L19 7'/></svg></div>
             <div>
               <h3 class="font-semibold text-2xl text-blue-700 mb-2">Showcase & Portfolio</h3>
               <p class="text-lg text-gray-700">Finish with a live, professional portfolio project to showcase your new skills and boost your career.</p>
@@ -98,7 +312,7 @@
     <p>&copy; 2025 Workshop Portfolio. All rights reserved.</p>
     <div class="flex flex-col md:flex-row justify-center items-center gap-2 mt-2 text-sm text-gray-300">
       <span class="inline-block border-t border-gray-700 w-12 md:w-24 mx-2"></span>
-      <span>Organizers: Vure Sathvik <a href="tel:+918688059009" class="text-blue-300 hover:underline ml-1">(+91-8688059009)</a> | Venkatapathi <a href="tel:+917386872189" class="text-blue-300 hover:underline ml-1">(+91-7386872189)</a> | Nikhil <a href="tel:+919390641574" class="text-blue-300 hover:underline ml-1">(+91-9390641574)</a> | B. Mohith <a href="tel:+918519851899" class="text-blue-300 hover:underline ml-1">(+91-8519851899)</a></span>
+      <span>Organizers: Vure Sathvik <a href="tel:+918688059009" class="text-blue-300 hover:underline ml-1 transition-all duration-300 hover:text-blue-200">(+91-8688059009)</a> | Venkatapathi <a href="tel:+917386872189" class="text-blue-300 hover:underline ml-1 transition-all duration-300 hover:text-blue-200">(+91-7386872189)</a> | Nikhil <a href="tel:+919390641574" class="text-blue-300 hover:underline ml-1 transition-all duration-300 hover:text-blue-200">(+91-9390641574)</a> | B. Mohith <a href="tel:+918519851899" class="text-blue-300 hover:underline ml-1 transition-all duration-300 hover:text-blue-200">(+91-8519851899)</a></span>
       <span class="inline-block border-t border-gray-700 w-12 md:w-24 mx-2"></span>
     </div>
   </footer>
@@ -111,6 +325,9 @@
     if (menuBtn && mobileMenu) {
       menuBtn.addEventListener('click', () => {
         mobileMenu.classList.toggle('hidden');
+        if (!mobileMenu.classList.contains('hidden')) {
+          mobileMenu.classList.add('mobile-menu-enter');
+        }
       });
     }
     
@@ -120,6 +337,29 @@
       link.addEventListener('click', () => {
         mobileMenu.classList.add('hidden');
       });
+    });
+    
+    // Intersection Observer for scroll animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+    
+    // Observe all sections for scroll animations
+    document.querySelectorAll('section').forEach(section => {
+      section.style.opacity = '0';
+      section.style.transform = 'translateY(30px)';
+      section.style.transition = 'all 0.8s ease-out';
+      observer.observe(section);
     });
   </script>
 </body>
